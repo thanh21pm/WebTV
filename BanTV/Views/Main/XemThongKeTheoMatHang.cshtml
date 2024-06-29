@@ -1,0 +1,89 @@
+﻿@model IEnumerable<BanTV.Models.CthoaDon>
+
+@{ ViewData["Title"] = "Index"; }
+<br />
+<br />
+<br />
+<br />
+<h1 class="text-info">Thống kê theo mặt hàng</h1>
+<br/>
+<div class="row">
+    <div class="col-8 text-left">
+        <form method="post" style="align-items: center; display: flex; grid-gap: 10px" asp-action="XemThongKeTheoMatHang">
+            <label>Chọn mặt hàng:</label>
+            <select class="form-select" name="id" aria-label="Disabled select example">
+                <option selected>Chọn mặt hàng</option>
+                @foreach (var i in ViewBag.mathang)
+                {
+                    <option value="@i.Mamh">@i.Ten</option>
+                }
+            </select>
+            <input type="submit" value="Xem" class="btn btn-info" />
+        </form>
+    </div>
+</div>
+<br/>
+<label>Tổng tiền đã bán của mặt hàng này: @ViewData["tongtien"]</label>
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mahd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MamhNavigation.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MamhNavigation.Hinhanh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MamhNavigation.Giagoc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MamhNavigation.Giaban)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soluong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thanhtien)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mahd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MamhNavigation.Ten)
+                </td>
+                <td>
+                    <img src="~/images/images/@Html.DisplayFor(modelItem => item.MamhNavigation.Hinhanh)" width="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MamhNavigation.Giagoc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MamhNavigation.Giaban)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Soluong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Thanhtien)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="ChiTietHoaDonTheoMatHang" asp-route-id="@item.Mahd">
+                        Chi tiết
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

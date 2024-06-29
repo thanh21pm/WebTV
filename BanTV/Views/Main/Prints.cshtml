@@ -1,0 +1,104 @@
+﻿@model BanTV.Models.HoaDon;
+@{ ViewData["Title"] = "In hoá đơn";
+    Layout = "~/Views/Shared/_Layout2.cshtml"; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Invoice</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="../../dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body onload="window.print();">
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="invoice">
+            <!-- title row -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <i class="fa fa-globe"></i>Chi tiết đơn hàng có mã số: @Model.Mahd
+
+                        <small class="pull-right">ngày lập: @Model.Ngay</small>
+                    </h2>
+                </div><!-- /.col -->
+            </div>
+            <!-- info row -->
+            <div class="row invoice-info">
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        <strong>Thông tin hóa đơn</strong><br>
+                        Mã hóa đơn: @Model.Mahd<br />
+                        Ngày lập: @Model.Ngay<br>
+                        Tổng tiền: @Model.Tongtien<br>
+
+                    </address>
+                </div><!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+
+                    <address>
+                        <strong>Thông tin khách hàng</strong><br>
+                        Mã khách hàng: @Model.Makh<br>
+                        Tên: @Model.MakhNavigation.Ten<br>
+                        Điện thoại: @Model.MakhNavigation.Dienthoai<br />
+                        Email: @Model.MakhNavigation.Email<br />
+                        Địa chỉ:  @{
+                            string diachi = Model.MadcNavigation.Diachi1 + ", " + Model.MadcNavigation.Phuongxa + ", " + Model.MadcNavigation.Quanhuyen + ", " + Model.MadcNavigation.Tinhthanh;
+                            <label>@diachi</label>
+                        }
+                    </address>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+            <!-- Table row -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">MaMH</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Hình Ảnh</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CthoaDon c in ViewBag.chittiethoadon)
+                    {
+                        int stt = 1;
+                        <tr>
+                            <td>@stt</td>
+                            <td>@c.Mamh</td>
+                            <td>@c.MamhNavigation.Ten</td>
+                            <td><img width="150" src="~/images/images/@c.MamhNavigation.Hinhanh" /></td>
+                            <td>@c.Dongia.ToString("n0") đ</td>
+                            <td>@c.Soluong</td>
+                            <td>@c.Thanhtien.ToString("n0") đ</td>
+                        </tr>
+                        stt++;
+                    }
+                </tbody>
+            </table>
+
+
+
+        </section><!-- /.content -->
+    </div>
+    <div class="clearfix"></div>
+</body>
+</html>

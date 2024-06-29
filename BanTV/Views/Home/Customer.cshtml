@@ -1,0 +1,84 @@
+﻿
+@model IEnumerable<BanTV.Models.DiaChi>;
+@{ ViewData["Title"] = "Thông tin tài khoản"; }
+<br />
+<br />
+<br />
+<br />
+<div class="d-flex justify-content-between mb-3">
+    <div><h2>Thông tin tài khoản</h2></div>
+    <div><a class="btn btn-outline-info" asp-action="DonHangChuaDuyet">Lịch sử đặt hàng</a></div>
+</div>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Tên người dùng
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.khachhang.Ten
+        </dd>
+        <dt class="col-sm-2">
+            Số diện thoại
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.khachhang.Dienthoai
+        </dd>
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.khachhang.Email
+        </dd>
+        <dt class="col-sm-2">
+            Địa chỉ
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Địa chỉ</th>
+                        <th scope="col" class="text-center">Mặc định</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int stt = 1;
+                        foreach (DiaChi i in Model)
+                        {
+                            string tmp = i.Diachi1 + ", " + i.Phuongxa + ", " + i.Quanhuyen + ", " + i.Tinhthanh;
+                            <tr>
+                                <td>@stt</td>
+                                <td>@tmp</td>
+                                @if (i.Macdinh == 1)
+                                {
+                                    <td class="text-center"><i class="bi bi-check-circle-fill"></i></td>
+                                    <td></td>
+                                }
+                                else
+                                {
+                                    <td class="text-center" action="SetAddressDefault"><a class="btn btn-outline-success" asp-action="SetDefaultAddress" asp-route-id="@i.Madc">Đặt làm mặc định</a></td>
+                                    <td><a class="btn btn-outline-danger" asp-action="DeleteAddress" asp-route-id="@i.Madc">Xóa</a></td>
+                                }
+
+                            </tr>
+                            stt++;
+                        } }
+                </tbody>
+
+
+
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-block btn-success float-left" asp-action="EditAccount">Chỉnh sửa thông tin</a>
+    <a class="btn btn-block btn-success float-left" asp-action="AddAddress">Thêm địa chỉ</a>
+    <a class="btn btn-block btn-danger float-right" asp-action="Logout">Đăng xuất <i class="bi bi-box-arrow-right"></i></a>
+</div>
+<br />
+<br />
+<br />
+<br />

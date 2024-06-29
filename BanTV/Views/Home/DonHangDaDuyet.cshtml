@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BanTV.Models.HoaDon>
+
+<br />
+<br />
+<br />
+<br />
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link " asp-action="DonHangChuaDuyet">Chờ xác nhận</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="ChoLayHang">Chờ lấy hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="DonHangDaDuyet">Nhận hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="DonHangDaHuy">Đã hủy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="DonHangDaGiao">Đã giao</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="HoanTraDonHang">Trả hàng</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-3">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Mã hóa đơn</th>
+                <th scope="col">Ngày lập</th>
+                <th scope="col">Tổng tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ foreach (HoaDon hd in Model)
+                {
+                        <tr>
+                            <td>@hd.Mahd</td>
+                            <td>@hd.Ngay</td>
+                            <td>@hd.Tongtien.ToString("n0") đ</td>
+                            <td><a class="btn btn-outline-info" asp-action="ChiTietHoaDon" asp-route-id="@hd.Mahd">Chi tiết</a></td>
+                            @if (hd.Trangthai == 5)
+                            {
+                                <td><a class="btn btn-success" asp-action="Xacnhandonhang" asp-route-id="@hd.Mahd">Xác nhận đơn hàng đã giao</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="HoanTra" asp-route-id="@hd.Mahd">Hoàn Trả đơn hàng</a></td>
+
+                            }
+                            else
+                            {
+                                <td><a class="btn btn-outline-info" >Đơn hàng đang được giao đến bạn</a></td>
+                            }
+
+                        </tr>
+                } }
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+<br />
+<br />

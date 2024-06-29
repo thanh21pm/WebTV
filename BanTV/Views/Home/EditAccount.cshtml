@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Sửa thông tin tài khoản";
+}
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row justify-content-center">
+        <h3 class="col-md-4 text-success">Sửa thông tin tài khoản</h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 ">
+            <form asp-action="EditAccount">
+                <div class="my-3">
+                    <label>Họ tên</label>
+                    <input type="text" name="hoten" class="form-control" value="@ViewBag.khachhang.Ten" />
+                </div>
+                <div class="my-3">
+                    <label>Số điện thoại</label>
+                    <input type="text" name="dienthoai" class="form-control" value="@ViewBag.khachhang.Dienthoai" />
+                </div>
+                <div class="my-3">
+                    <label>Email</label>
+                    <input type="text" name="email" class="form-control" value="@ViewBag.khachhang.Email" />
+                </div>
+                <div class="my-3">
+                    <label>Mật khẩu mới</label>
+                    <input type="text" name="matkhau" class="form-control" />
+                </div>
+                <div class="my-3 d-grid">
+                    <input type="submit" value="Lưu" class="btn btn-block btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />

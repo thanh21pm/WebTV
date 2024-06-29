@@ -1,0 +1,112 @@
+﻿@model IEnumerable<BanTV.Models.MatHang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row text-center">
+    <div class="d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Quản lý mặt hàng</h5>
+                <div class="table-responsive">
+                    <td class="border-bottom-0">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary rounded-3 fw-semibold "><a class="text-white" asp-action="Create">Thêm mặt hàng</a></span>
+                        </div>
+                        <br />
+                        <div class="d-flex flex-row">
+                            <form asp-controller="MatHangs" asp-action="Search">
+                                <input type="search" name="SearchKey" placeholder="Tìm kiếm...." class="form-control" />
+                            </form>
+
+                        </div>
+                        <br />
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-primary rounded-3 fw-semibold "><a class="text-white" asp-action="ex">Xuất Excel</a></span>
+                        </div>
+                    </td>
+                    <table class="table text-nowrap mb-0 align-middle">
+                        <thead class="text-dark fs-4">
+                            <tr>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0 text-center">Tên mặt hàng</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">giá gốc</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">giá bán</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Hình ảnh</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Mặt hàng đã xóa</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Tên danh mục</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Sửa sản phẩm</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Xem sản phẩm</h6>
+                                </th>
+                                <th class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-0">Xóa sản phẩm</h6>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ten)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Giagoc)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Giaban)
+                                    </td>
+                                    <td>
+                                        <img src="~/images/images/@Html.DisplayFor(modelItem => item.Hinhanh)" class="img-thumbnail" width="100" />
+                                    </td>
+                                    @if (item.Daxoa == 0)
+                                    {
+                                        <td></td>
+                                    }
+                                    else
+                                    {
+                                        <td><i class="bi bi-x-circle-fill text-danger"></i></td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MadmNavigation.Ten)
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-secondary rounded-3 fw-semibold"> <a class="text-white" asp-action="Edit" asp-route-id="@item.Madm"> Sửa</a></span>
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-success rounded-3 fw-semibold"> <a class="text-white" asp-action="Details" asp-route-id="@item.Madm">Xem</a></span>
+                                        </div>
+                                    </td>
+                                    <td class="border-bottom-0">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-danger rounded-3 fw-semibold"><a class="text-white" asp-action="Delete" asp-route-id="@item.Madm">Xóa</a></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

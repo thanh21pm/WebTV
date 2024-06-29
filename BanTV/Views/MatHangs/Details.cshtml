@@ -1,0 +1,74 @@
+﻿@model BanTV.Models.MatHang
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>MatHang</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Giagoc)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Giagoc)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Giaban)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Giaban)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Soluong)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Soluong)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mota)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mota)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hinhanh)
+        </dt>
+        <dd class="col-sm-10">
+            <img width="500" src="~/images/images/@Html.DisplayFor(model => model.Hinhanh)" />
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Daxoa)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Daxoa)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MadmNavigation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MadmNavigation.Ten)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.hot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.hot)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Mamh">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

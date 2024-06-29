@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BanTV.Models.HoaDon>;
+@{
+    ViewData["Title"] = "Hóa đơn đã giao";
+}
+<br />
+<br />
+<br />
+<br />
+<h1>Hóa đơn đã giao</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Mã HD</th>
+            <th>Ngày lập</th>
+            <th>Tổng tiền (đ)</th>
+            <th>Khách hàng</th>
+            <th>Địa chỉ</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HoaDon i in Model)
+        {
+            string diachi = i.MadcNavigation.Diachi1 + ", " + i.MadcNavigation.Phuongxa + ", " + i.MadcNavigation.Quanhuyen + ", " + i.MadcNavigation.Tinhthanh;
+            <tr>
+                <td>@i.Mahd</td>
+                <td>@i.Ngay</td>
+                <td>@i.Tongtien</td>
+                <td>@i.MakhNavigation.Ten</td>
+                <td>@diachi</td>
+                <td>
+                    <a class="btn btn-success" asp-action="ChiTietHangHoanTra" asp-route-id="@i.Mahd">
+                        Chi tiết
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<br />
+<br />
+<br />

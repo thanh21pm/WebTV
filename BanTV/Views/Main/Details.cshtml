@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BanTV.Models.CthoaDon>
+
+<h1 class="text-center">CHI TIẾT HÓA ĐƠN</h1>
+@foreach (CthoaDon hd in Model)
+{
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="my-3 row">
+
+                <label class="col-sm-2">Mã Hóa Đơn</label>
+                <div class="col-sm-10">
+                    @hd.Mahd;
+                </div>
+            </div>
+            <div class="my-3 row">
+                <label class="col-sm-2">Tên mặt hàng</label>
+                <div class="col-sm-10">
+                    @hd.MamhNavigation.Ten
+                </div>
+            </div>
+            <div class="my-3 row">
+                <label class="col-sm-2">Đơn giá</label>
+                <div class="col-sm-10">
+                    @hd.Dongia
+                </div>
+            </div>
+            <div class="my-3 row">
+                <label class="col-sm-2">Số lượng</label>
+                <div class="col-sm-10">
+                    @hd.Soluong
+                </div>
+            </div>
+            <div class="my-3 row">
+                <label class="col-sm-2">Thành tiền</label>
+                <div class="col-sm-10">
+                    @hd.Thanhtien
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+}

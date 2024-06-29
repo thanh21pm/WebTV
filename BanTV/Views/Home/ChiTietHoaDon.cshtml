@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BanTV.Models.CthoaDon>
+    <br />
+    <br />
+    <br />
+    <br />
+    <h2>Chi tiết đơn hàng có mã số: @ViewBag.hoadon.Mahd</h2>
+
+    <dl class="row">
+        <dt class="col-sm-2">Địa chỉ giao hàng</dt>
+        <dd class="col-sm-10">
+            @{
+                string diachi = ViewBag.hoadon.MadcNavigation.Diachi1 + ", " + ViewBag.hoadon.MadcNavigation.Phuongxa + ", " + ViewBag.hoadon.MadcNavigation.Quanhuyen + ", " + ViewBag.hoadon.MadcNavigation.Tinhthanh;
+                <label>@diachi</label>
+            }
+        </dd>
+        <dt class="col-sm-2">Ngày lập</dt>
+        <dd class="col-sm-10">@ViewBag.hoadon.Ngay</dd>
+        <dt class="col-sm-2">Tổng tiền</dt>
+        <dd class="col-sm-10">@ViewBag.hoadon.Tongtien.ToString("n0") đ</dd>
+        <dt class="col-sm-2">Mặt hàng</dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">MaMH</th>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Hình Ảnh</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giá</th>
+                        <th scope="col">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CthoaDon ct in Model)
+                    {
+                        <tr>
+                            <td>@ct.Mamh</td>
+                            <td>@ct.MamhNavigation.Ten</td>
+                            <td> <img src="~/images/images/@ct.MamhNavigation.Hinhanh" width="150" /> </td>
+                            <td>@ct.Soluong</td>
+                            <td>@ct.Dongia.ToString("n0") đ</td>
+                            <td>@ct.Thanhtien</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </dd>
+
+
+    </dl>
+    <br />
+    <br />
+    <br />
+    <br />

@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.nhanvien.Quyen == 1)
+{
+    <h2 class="text-center">BIỂU ĐỒ DOANH THU</h2>
+    <br />
+    <br />
+    <div class="row">
+        <div class=" col-6">
+            <h3> biểu đồ cột</h3>
+            <canvas id="barChart" width="800" height="810" style="width:197px;height:110px; "></canvas>
+        </div>
+        <div class=" col-6">
+            <h3> biểu đồ tròn</h3>
+            <canvas id="pieChart" width="400" height="310" style="width:197px;height:110px; "></canvas>
+        </div>
+        <div class=" col-6">
+            <h3> biểu đồ đường</h3>
+            <canvas id="lineChart" width="400" height="310" style="width:197px;height:110px; "></canvas>
+        </div>
+        <div class=" col-6">
+            <h3> biểu đồ vòng</h3>
+            <canvas id="doughnutChart" width="400" height="310" style="width:197px;height:110px; "></canvas>
+        </div>
+        <div class=" col-6">
+            <h3> biểu đồ vùng cực</h3>
+            <canvas id="polarAreaChart" width="400" height="310" style="width:197px;height:110px; "></canvas>
+        </div>
+        <div class=" col-6">
+            <h3> biểu đồ Radar</h3>
+            <canvas id="radarChart" width="400" height="310" style="width:197px;height:110px; "></canvas>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Main/Get",
+                data: "",
+                contentType: "application/json; charset=utf8 ",
+                dataType: "json",
+                success: OnSuccess,
+
+            });
+            function OnSuccess(data) {
+                const barChart = document.getElementById('barChart');
+                const pieChart = document.getElementById('pieChart');
+                const lineChart = document.getElementById('lineChart');
+                const doughnutChart = document.getElementById('doughnutChart');
+                const polarAreaChart = document.getElementById('polarAreaChart');
+                const radarChart = document.getElementById('radarChart');
+                var _data = data;
+                var _labels = _data[0];
+                var _CharData = _data[1];
+                var colorsr = ['Blue'];
+                var colors = ['Blue', 'Red', 'Green', 'Yellow', 'Purple'];
+                new Chart(barChart,
+                    {
+                        type: 'bar',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colorsr,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+
+                new Chart(pieChart,
+                    {
+                        type: 'pie',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colors,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+                new Chart(lineChart,
+                    {
+                        type: 'line',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colorsr,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+                new Chart(doughnutChart,
+                    {
+                        type: 'doughnut',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colors,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+                new Chart(polarAreaChart,
+                    {
+                        type: 'polarArea',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colors,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+                new Chart(radarChart,
+                    {
+                        type: 'radar',
+                        data: {
+                            labels: _labels,
+                            datasets: [{
+                                backgroundColor: colors,
+                                data: _CharData,
+                                borderWidth: 1,
+                            }]
+                        }
+                    });
+            }
+
+        });
+    </script>
+}
+else
+{
+    @if (ViewBag.nhanvien.Quyen == 0)
+    {
+        <h3 class="text-center"> Chào mừng đến với trang Nhân Viên</h3>
+
+    }
+    else
+    {
+        <h3 class="text-center"> Chào mừng đến với trang Nhân Viên Vận Chuyển</h3>
+    }
+
+}

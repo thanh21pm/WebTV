@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BanTV.Models.KhachHang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="  text-center ">Quản lý khách hàng</h1>
+<br />
+<div class="d-flex flex-row">
+    <form asp-controller="KhachHangs" asp-action="Search">
+        <input type="search" name="SearchKey" placeholder="Tìm kiếm...." class="form-control" />
+    </form>
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dienthoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Đã đăng kí
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Daxoa)
+            </th>
+            <th>
+                Khóa mật khẩu
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dienthoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @if (item.Matkhau == null)
+                {
+                    <td>Chưa đăng ký</td>
+                }
+                else
+                {
+                    <td>Đã đăng ký</td>
+                }
+
+                @if (item.Daxoa == 3)
+                {
+                    <td>Đã xóa</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                @if (item.Daxoa == 0)
+                {
+                    <td class="text-center"><a class="btn btn-outline-success" asp-action="Khoa" asp-route-id="@item.Makh">khóa mật khẩu</a></td>
+
+                }
+                else
+                @if (item.Daxoa == 1)
+                {
+                    <td class="text-center"><a class="btn btn-outline-success" asp-action="Mo" asp-route-id="@item.Makh">mở mật khẩu</a></td>
+
+                }
+                else
+                {
+                    <td></td>
+                }
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Makh" class="btn btn-warning">Xem</a>
+                    <a asp-action="Delete" asp-route-id="@item.Makh" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

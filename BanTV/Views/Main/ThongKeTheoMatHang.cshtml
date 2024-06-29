@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BanTV.Models.CthoaDon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<br />
+<br />
+<h1 class="text-info">Thống kê theo mặt hàng</h1>
+<div class="row">
+    <div class="col-8 text-left">
+        <form method="post" style="align-items: center; display: flex; grid-gap: 10px" asp-action="XemThongKeTheoMatHang">
+            <label>Chọn mặt hàng:</label>
+            <select class="form-select" name="id" aria-label="Disabled select example">
+                <option selected>Chọn mặt hàng</option>
+                @foreach (var i in ViewBag.mathang)
+                {
+                    <option value="@i.Mamh">@i.Ten</option>
+                }
+            </select>
+            <input type="submit" value="Xem" class="btn btn-info" />
+        </form>
+    </div>
+</div>

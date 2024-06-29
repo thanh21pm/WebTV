@@ -1,0 +1,82 @@
+﻿@model BanTV.Models.MatHang
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Edit</h1>
+
+<h4>MatHang</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Mamh" />
+            <input type="hidden" asp-for="Daxoa" />
+            <input type="hidden" asp-for="luotxem" />
+            <input type="hidden" asp-for="luotmua" />
+            <div class="form-group">
+                <label asp-for="Ten" class="control-label"></label>
+                <input asp-for="Ten" class="form-control" />
+                <span asp-validation-for="Ten" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Giagoc" class="control-label"></label>
+                <input asp-for="Giagoc" class="form-control" />
+                <span asp-validation-for="Giagoc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Giaban" class="control-label"></label>
+                <input asp-for="Giaban" class="form-control" />
+                <span asp-validation-for="Giaban" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Soluong" class="control-label"></label>
+                <input asp-for="Soluong" class="form-control" />
+                <span asp-validation-for="Soluong" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mota" class="control-label"></label>
+                <input asp-for="Mota" class="form-control" />
+                <span asp-validation-for="Mota" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hinhanh" class="control-label"></label>
+                <input type="hidden" asp-for="Hinhanh" class="form-control" />
+                <input type="file" name="file" class="form-control" />
+                <span asp-validation-for="Hinhanh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madm" class="control-label"></label>
+                <select asp-for="Madm" class="form-control" asp-items="ViewBag.Madm"></select>
+                <span asp-validation-for="Madm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">HOT</label><br />
+                @if (Model.hot == 1)
+                {
+
+                    <input type="radio" id="0" name="hot" value="0"> <label for="0">không HOT</label>
+                    <input type="radio" id="1" name="hot" value="1" checked="true"> <label for="1">HOT</label>
+                }
+                else
+                {
+                    <input type="radio" id="0" name="hot" value="0" checked="true"> <label for="0">không HOT</label>
+                    <input type="radio" id="1" name="hot" value="1"> <label for="1">HOT</label>
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+

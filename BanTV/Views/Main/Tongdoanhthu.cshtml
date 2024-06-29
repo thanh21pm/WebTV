@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BanTV.Models.HoaDon>
+
+@{ ViewData["Title"] = "Index"; }
+<br />
+<br />
+
+<h1 class="text-info">Tổng doanh thu</h1>
+
+<h2><label>Tổng Tổng doanh thu: @ViewData["tongtien"] đ</label></h2>
+<br />
+<br />
+<div class="d-flex align-items-center gap-2">
+    <span class="badge bg-primary rounded-3 fw-semibold "><a class="text-white" asp-action="excel">Xuất Excel</a></span>
+</div>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Mã hóa đơn
+            </th>
+
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                ngày lập
+            </th>
+            <th>
+                tổng tiền
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (HoaDon item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mahd)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MakhNavigation.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MakhNavigation.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ngay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tongtien)
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-action="ChiTietHoaDonTongDoanhThu" asp-route-id="@item.Mahd">
+                        Chi tiết
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

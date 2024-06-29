@@ -1,0 +1,118 @@
+﻿@model BanTV.Models.HoaDon;
+@{
+    ViewData["Title"] = "Chi tiết hóa đơn";
+}
+<br />
+<br />
+<br />
+<br />
+<h4>Chi tiết hóa đơn</h4>
+<hr />
+<div class="row">
+    <!--Thông tin hóa đơn-->
+    <div class="col-md">
+        <h5>Thông tin hóa đơn</h5>
+        <dl class="row">
+            <dt class="col-sm-3">
+                Mã hóa đơn
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Mahd
+            </dd>
+            <dt class="col-sm-3">
+                Ngày lập
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Ngay
+            </dd>
+            <dt class="col-sm-3">
+                Tổng tiền
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Tongtien
+            </dd>
+        </dl>
+    </div>
+
+    <!--Thông tin khách hàng-->
+    <div class="col-md">
+        <h5>Thông tin khách hàng</h5>
+        <dl class="row">
+            <dt class="col-sm-3">
+                Mã khách hàng
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Makh
+            </dd>
+            <dt class="col-sm-3">
+                Tên
+            </dt>
+            <dd class="col-sm-9">
+                @Model.MakhNavigation.Ten
+            </dd>
+            <dt class="col-sm-3">
+                Điện thoại
+            </dt>
+            <dd class="col-sm-9">
+                @Model.MakhNavigation.Dienthoai
+            </dd>
+            <dt class="col-sm-3">
+                Email
+            </dt>
+            <dd class="col-sm-9">
+                @Model.MakhNavigation.Email
+            </dd>
+            <dt class="col-sm-3">
+                Địa chỉ
+            </dt>
+            <dd class="col-sm-9">
+                @{
+                    string diachi = Model.MadcNavigation.Diachi1 + ", " + Model.MadcNavigation.Phuongxa + ", " + Model.MadcNavigation.Quanhuyen + ", " + Model.MadcNavigation.Tinhthanh;
+                    <label>@diachi</label>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<hr />
+
+<h5>Thông tin sản phẩm</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã mặt hàng</th>
+            <th>Tên</th>
+            <th>Hình</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CthoaDon c in ViewBag.chittiethoadon)
+        {
+            int stt = 1;
+            <tr>
+                <td>@stt</td>
+                <td>@c.Mamh</td>
+                <td>@c.MamhNavigation.Ten</td>
+                <td><img width="150" src="~/images/images/@c.MamhNavigation.Hinhanh" /></td>
+                <td>@c.Dongia.ToString("n0") đ</td>
+                <td>@c.Soluong</td>
+                <td>@c.Thanhtien.ToString("n0") đ</td>
+            </tr>
+            stt++;
+        }
+    </tbody>
+</table>
+    <a class="btn btn-success" asp-action="VanChuyen" asp-route-id="@Model.Mahd">
+        Vận chuyển
+    </a>
+
+<a class="btn btn-danger mx-3" asp-action="HuyDonHang" asp-route-id="@Model.Mahd">Hủy đơn hàng</a>
+<br />
+<br />
+<br />
+<br />

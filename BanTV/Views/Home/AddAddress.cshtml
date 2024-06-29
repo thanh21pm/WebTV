@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Thêm địa chỉ";
+}
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+
+    <div class="row justify-content-center">
+        <h3 class="col-md-4 text-success">Thêm địa chỉ</h3>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4 ">
+            <form asp-action="AddAddress">
+                <div class="my-3">
+                    <label>Địa chỉ cụ thể</label>
+                    <input type="text" name="diachicuthe" class="form-control" />
+                </div>
+                <div class="my-3">
+                    <label>Phường xã</label>
+                    <input type="text" name="phuongxa" class="form-control" />
+                </div>
+                <div class="my-3">
+                    <label>Quận huyện</label>
+                    <input type="text" name="quanhuyen" class="form-control" />
+                </div>
+                <div class="my-3">
+                    <label>Tỉnh thành</label>
+                    <input type="text" name="tinhthanh" class="form-control" />
+                </div>
+                <div class="my-3 d-grid">
+                    <input type="submit" value="Lưu" class="btn btn-block btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />

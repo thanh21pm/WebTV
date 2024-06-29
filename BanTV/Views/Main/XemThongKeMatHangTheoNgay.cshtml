@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BanTV.Models.CthoaDon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<br />
+<br />
+<h1 class="text-info">Thống kê sản phẩm đã bán được trong ngày</h1>
+<form method="post" style="display: flex; align-items: center; grid-gap: 10px" asp-controller="Main" asp-action="XemThongKeMatHangTheoNgay">
+    Từ: <input style="display: inline-block" type="date" name="Ngaybatdau" class="form-control " pattern="\d{2}/\d{2}/\d{4}" />
+    Đến: <input style="display: inline-block" type="date" name="Ngayketthuc" class="form-control" pattern="\d{2}/\d{2}/\d{4}" />
+    <input style="display: inline-block" type="submit" value="Xem" class="btn btn-info" />
+</form>
+<br/>
+<label>Ngày bắt đầu: @ViewData["ngaybatdau"]</label>
+<br />
+<label>Ngày kết thúc: @ViewData["ngayketthuc"]</label>
+<br />
+
+<br />
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mã mặt hàng
+            </th>
+            <th>
+                Tên mặt hàng 
+            </th>
+            <th>
+                Giá bán 
+            </th>
+            <th>
+                Ngày
+            </th>
+            <th>
+               Số lượng
+            </th>
+
+            <th>
+               hình ảnh
+            </th>
+            <th>
+               Tổng tiền
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MamhNavigation.Mamh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MamhNavigation.Ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MamhNavigation.Giaban)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MahdNavigation.Ngay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                <img src="~/images/images/@Html.DisplayFor(modelItem => item.MamhNavigation.Hinhanh)" width="150" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thanhtien)
+            </td>
+           
+
+        </tr>
+        }
+    </tbody>
+</table>
